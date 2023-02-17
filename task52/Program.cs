@@ -1,18 +1,19 @@
 ﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
-// Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
+Console.Clear();
 Console.WriteLine("Введите количество строк массива: ");
-int rows = int.Parse(Console.ReadLine());
+int rows = int.Parse(Console.ReadLine()!)!;
 Console.WriteLine("Введите количество столбцов массива: ");
-int colums = int.Parse(Console.ReadLine());
-
+int colums = int.Parse(Console.ReadLine()!)!;
 int[,] array = GetArray(rows, colums, 1, 10);
 PrintArray(array);
-Console.WriteLine(ArithmeticMean(array));
+Console.WriteLine();
+Console.Write("Среднее арифметическое каждого столбца: ");
+Average(array);
 
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
@@ -39,17 +40,16 @@ void PrintArray(int[,] inArray)
     }
 }
 
-int ArithmeticMean(int[,] array)
+void Average(int[,] array)
 {
-    int res = 0;
     for (int j = 0; j < array.GetLength(1); j++)
     {
-        for (int i = 0; i < array.GetLength(1); i++)
+        double sum = 0;
+        for (int i = 0; i < array.GetLength(0); i++)
         {
-            res = res + array[i, j];
+            sum = sum + array[i, j];
         }
-        res = res / array.GetLength(0);
+        double res = sum / array.GetLength(0);
+        Console.Write($"{Math.Round(res, 2)}; ");
     }
-
-    return res;
 }
