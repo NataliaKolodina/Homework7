@@ -7,6 +7,7 @@
 Console.Clear();
 int m = InputNum("Введите количество строк: ");
 int n = InputNum("Введите количество столбцов: ");
+
 double[,] arr = GetArray(m, n);
 PrintArray(arr);
 
